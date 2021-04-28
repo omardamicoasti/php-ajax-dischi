@@ -22,8 +22,7 @@ var app = new Vue({
   methods: {
     filterAuthor(singleAlbum) {
       if (
-        this.selectedAuthor == singleAlbum.author ||
-        this.selectedAuthor == "All"
+        this.selectedAuthor == singleAlbum.author || this.selectedAuthor == "All"
       ) {
         return true;
       } else {
