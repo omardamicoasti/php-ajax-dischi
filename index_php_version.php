@@ -11,8 +11,7 @@ a php e li stamperà attraverso VUEJS.
 Bonus: Attraverso un’altra chiamata AXIOS, filtrare gli album per artista. -->
 
 <?php
-include __DIR__ . '/database.php';
-var_dump($database)
+include __DIR__ . '/partials/database.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,37 +24,31 @@ var_dump($database)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <title>Vue dischi</title>
 </head>
 
 <body>
     <div id="app" class="container">
-        <header>
-            <img src="img/spotifyLogo.png" alt="Spotify Logo">
-            <select>
-                <option>genere</option>
-            </select>
-        </header>
+        <?php
+        include __DIR__ . '/partials/header.php';
+        ?>
         <main>
             <div class="wrapper">
-                
 
-                        <?php
-                        foreach ($database as $album) {
-                            echo " <div class='albumContainer'> ";
-                                echo " <div class='album'> ";
-                                    echo " <img src=' ".$album["poster"]." ' alt='Foto Album'>";
-                                    echo "<h4>" . $album["title"] . "</h4>";
-                                    echo "<p>" . $album["author"] . "</p>";
-                                    echo "<p>" . $album["year"] . "</p>";
-                                echo " </div> ";
-                            echo " </div> ";
-                            
-                        }
-                        ?>
-                          
-                
+                <?php
+                foreach ($database as $album) {
+                    echo " <div class='albumContainer'> ";
+                    echo " <div class='album'> ";
+                    echo " <img src=' " . $album["poster"] . " ' alt='Foto Album'>";
+                    echo "<h4>" . $album["title"] . "</h4>";
+                    echo "<p>" . $album["author"] . "</p>";
+                    echo "<p>" . $album["year"] . "</p>";
+                    echo " </div> ";
+                    echo " </div> ";
+                }
+                ?>
+
             </div>
         </main>
     </div>
