@@ -11,7 +11,7 @@ a php e li stamperà attraverso VUEJS.
 Bonus: Attraverso un’altra chiamata AXIOS, filtrare gli album per artista. -->
 
 <?php
-include __DIR__ . '/partials/database.php';
+include __DIR__ . '/partials/database.phpdatabase.php';
 ?>
 
 <!DOCTYPE html>

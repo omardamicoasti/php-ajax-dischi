@@ -1,42 +1,34 @@
-/*Descrizione: Attraverso una chiamata ajax all’API di boolean 
-https://flynn.boolean.careers/exercises/api/array/music avremo 
-a disposizione una decina di dischi musicali. Utilizzando vue, 
-stampiamo a schermo una card per ogni album.
-BONUS: Creare una select con tutti i generi dei dischi. 
-In base a cosa scegliamo nella select, vedremo i corrispondenti cd.
-BONUS 2: Ordinare i dischi per anno di uscita.*/
-
-
 var app = new Vue({
   el: "#app",
 
   mounted() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((result) => {
-        this.library = result.data.response;
-        for (let i = 0; i < this.library.length; i++) {
-          if (!this.genreLibrary.includes(this.library[i].genre)) {
-            this.genreLibrary.push(this.library[i].genre);
-          }
+    axios.get("http://localhost/php-ajax-dischi/server.php").then((result) => {
+      this.library = result.data;
+      for (let i = 0; i < this.library.length; i++) {
+        if (!this.authorLibrary.includes(this.library[i].author)) {
+          this.authorLibrary.push(this.library[i].author);
         }
-        this.library.sort(function(a, b) {return a.year - b.year;});
-      });
+      }
+      this.authorLibrary.sort((a, b) => (a > b ? 1 : -1));
+    });
   },
 
   data: {
     library: "",
-    genreLibrary: ["All"],
-    selectedGenre: "All",
+    authorLibrary: ["All"],
+    selectedAuthor: "All",
   },
 
   methods: {
-    filterGenre(singleAlbum) {
-        if ((this.selectedGenre == singleAlbum.genre) || (this.selectedGenre == "All")) {
-          return true;
-        } else {
-          return false;
-        }
+    filterAuthor(singleAlbum) {
+      if (
+        this.selectedAuthor == singleAlbum.author ||
+        this.selectedAuthor == "All"
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 });
