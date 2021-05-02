@@ -25,11 +25,13 @@ var app = new Vue({
       if (this.selectedAuthor == "All") {
         axios.get("http://localhost/php-ajax-dischi/server.php").then((result) => {
           this.library = result.data;
-    });
-      };
-      axios.get("http://localhost/php-ajax-dischi/server.php?author=" + this.selectedAuthor).then((result) => {
+        });
+      } else {
+        axios.get("http://localhost/php-ajax-dischi/server.php?author=" + this.selectedAuthor).then((result) => {
         this.library = result.data;
       });
+      }
+      
     },
     
   },
