@@ -52,8 +52,6 @@ include __DIR__ . '/partials/database.php';
             </div>
         </main>
     </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="app.js"></script> -->
 </body>
 
 </html>

@@ -16,13 +16,14 @@
     <div id="app" class="container">
         <header>
             <img src="img/spotifyLogo.png" alt="Spotify Logo">
-            <select v-model="selectedAuthor">
+            <select @change="filterByAuthor" v-model="selectedAuthor">
+                <option>All</option>
                 <option v-for="author in authorLibrary">{{author}}</option>
             </select>
         </header>
         <main>
             <div class="wrapper">
-                <div class="albumContainer" v-for="singleAlbum in library" v-if="filterAuthor(singleAlbum)">
+                <div class="albumContainer" v-for="singleAlbum in library">
                     <div class="album">
                         <img :src="singleAlbum.poster" alt="Foto Album">
                         <h4>{{singleAlbum.title}}</h4>
@@ -35,6 +36,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="app.js"></script>
+
 </body>
 
 </html>
